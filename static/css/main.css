@@ -1,0 +1,86 @@
+body {
+  font: 100% / 1.5 Inconsolata, monospace;
+  color: hsl(230, 100%, 95%);
+  background-color: hsl(230, 40%, 10%);
+  font-weight: 300;
+}
+
+.image {
+  margin-top: -40px;
+}
+
+img {
+  width: 60%;
+  margin: auto;
+  display: block;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  text-shadow: 0 0 1em hsla(320, 100%, 50%, 0.5),
+    0 0 0.125em hsla(320, 100%, 60%, 0.5),
+    -0.25em -0.125em 0.125em hsla(40, 100%, 60%, 0.125),
+    0.25em 0.125em 0.125em hsla(200, 100%, 60%, 0.25);
+}
+
+h3 {
+  margin-top: -45px;
+}
+
+::selection {
+  background-color: #013896;
+  color: #f1f1f1;
+  }
+  
+
+.selection {
+    margin: 0 auto;
+    text-align: center;
+    padding: center;
+  }
+  
+select {
+  width:400px;
+  border: 1px solid #fff;
+  border-radius: 1em;
+  background-color: transparent;
+  font: 100% / 1.5 Inconsolata, monospace;
+  color: #ffffff;
+  padding: 0.5em 1em;
+}
+
+option {
+  background-color: #013896;
+  font: 100% / 1.5 Inconsolata, monospace;
+}
+
+
+.clicker {
+  text-align: center;
+  margin-top: 25px;
+}
+
+input {
+  padding: 12px 40px;
+  border-radius: 1em;
+  border: 2px solid rgb(0, 0, 0);
+  font-size: 20px;
+  cursor: pointer;
+  font: 100% / 1.5 Inconsolata, monospace;
+}
+
+input:hover{
+  background-color: #013896;
+  color: rgb(255, 255, 255);
+ }
+
+
+.table {
+  margin: 2rem auto 4rem;
+  width: 90%;
+  max-width: 70rem;
+}
+
+
+  

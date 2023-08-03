@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+    <title>Better Shuffle</title>
+</head>
+<body>
+    <h1 style="text-align: center">Better Shuffle</h1>
+    <div class = 'image'>
+    <img src="../static/Spotify Purple Neon Logo.png" style="width:120px; height:120px"; text-align: center>
+    </div>
+    <h2 style="text-align: center">Choose Playlist and Device: </h2>
+    <form action="/getPlaylist" method="POST">
+        <div class = 'selection'>
+            <select name="playlists" class = "Input" id="playlists">
+                {% for playlist in playlist_data %}
+                <option value="{{ playlist[2] }}">{{ playlist[0] }} by {{ playlist[3] }}</option>
+                {% endfor %}
+            </select>
+            <select name="devices" class = "Input" id="devices">
+                {% for device in devices %}
+                <option value ="{{ device['id'] }}">{{ device['name'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class = 'clicker'>
+            <input type="submit" value="Shuffle Playlist">
+        </div>
+    </form>
+
+    {% if track_data|length > 1 %}
+    <div class = 'table'>
+        <table>
+            <tr>
+                <th>Number</th>
+                <th>Title</th>
+                <th>Artists</th>
+            </tr>
+            {% for track in track_data %}
+                <tr>
+                    <td>#{{ track[1] }}</td>
+                    <td>{{ track[0] }}</td>
+                    <td>By: {{ track[2] }} </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+    
+</body>
+</html>
