@@ -10,13 +10,12 @@ body {
 }
 
 img {
-  width: 60%;
   margin: auto;
   display: block;
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   font-weight: 300;
   text-shadow: 0 0 1em hsla(320, 100%, 50%, 0.5),
     0 0 0.125em hsla(320, 100%, 60%, 0.5),
@@ -61,6 +60,10 @@ option {
   margin-top: 25px;
 }
 
+:disabled {
+  cursor: wait;
+}
+
 input {
   padding: 12px 40px;
   border-radius: 1em;
@@ -75,11 +78,9 @@ input:hover{
   color: rgb(255, 255, 255);
  }
 
-
-.table {
-  margin: 2rem auto 4rem;
-  width: 90%;
-  max-width: 70rem;
+table {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 

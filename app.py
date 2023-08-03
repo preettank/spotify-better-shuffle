@@ -14,10 +14,6 @@ app.secret_key = os.getenv("APP_KEY")
 app.config['SESSION_COOKIE_NAME'] = "COOKIES"
 TOKEN_INFO = "token_info"
 
-# need to add comments to code
-# CROSS OUT SHUFFLE BUTTON ONCE CLICKED AS LOAD TIMES CAN TAKE SOME TIME
-# put it on github and also public webserver
-
 
 @app.route('/')
 def login():
@@ -62,8 +58,9 @@ def getPlaylist():
         # obtains user tracks from the specified playlist
         iteration = 0
         all_songs = []
+        user_market = sp.current_user()['country']
         while True:
-            tracks = sp.playlist_tracks(playlist_id= playlist_id, fields=None, limit=100, offset=iteration * 100)['items']
+            tracks = sp.playlist_tracks(playlist_id= playlist_id, fields=None, limit=100, offset=iteration * 100, market=user_market)['items']
             iteration += 1
             all_songs += tracks
             if (len(tracks) < 100):
@@ -85,8 +82,10 @@ def getPlaylist():
                 indexes[i+1].append(artists)
             else:
                 indexes[i+1].append(track['track']['artists'][0]['name'])
-            # removes local files from available tracks
+            # removes local files and unplayable songs in the user's market from available tracks
             if track['track']['is_local']:
+                del indexes[i+1]
+            elif track['track']['is_playable'] == False:
                 del indexes[i+1]
             else:
                 available_tracks.append(i+1)
