@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+    <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
     <title>Better Shuffle</title>
 </head>
 <body>
@@ -30,6 +31,15 @@
             <input type="submit" value="Shuffle Playlist" onclick="this.disabled=true;this.form.submit();this.value='Shuffling...';">
         </div>
     </form>
+    {% if track_data|length > 1 %}
+    <div class = 'create_playlist'>
+        <input type="submit" class="c_playlist" value="Create Into New Playlist" hx-get="/createPlaylist" hx-trigger="click" onclick="this.disabled=true;this.value='Playlist Saved'">
+    </div>
+    {% endif %}
+
+    {% if user_premium_status != "premium" and track_data|length > 1 %}
+    <p style="text-align:center;">Spotify does not support playback for free users, however, you can save the shuffled songs to your own playlist and play in order.</p>
+    {% endif %}
 
     {% if track_data|length > 1 %}
     <div class = 'table'>
