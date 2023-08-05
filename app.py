@@ -29,7 +29,7 @@ def redirectPage():
     sp_oauth = create_spotify_oauth()
     session.clear()
     code = request.args.get('code')
-    token_info = sp_oauth.get_access_token(code)
+    token_info = sp_oauth.get_access_token(code, check_cache =False)
     session[TOKEN_INFO] = token_info
     return redirect(url_for('getPlaylist', _external=True))
 
