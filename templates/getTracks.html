@@ -33,7 +33,11 @@
     </form>
     {% if track_data|length > 1 %}
     <div class = 'create_playlist'>
-        <input type="submit" class="c_playlist" value="Create Into New Playlist" hx-get="/createPlaylist" hx-trigger="click" onclick="this.disabled=true;this.value='Playlist Saved'">
+    <form hx-get="/createPlaylist" hx-trigger="click once">
+        <input type="submit" class="c_playlist" name="c_playlist" value="Create Into New Playlist" onclick="this.disabled=true;this.value='Playlist Saved';">
+        <!-- Stores uri data in input as a way to cache the currently shuffled tracks -->
+        <input type="hidden" id = "send_back" name="send_back" value="{{ uris }}">
+    </form>
     </div>
     {% endif %}
 
