@@ -1,12 +1,20 @@
-# spotify_better_shuffle
-Open-source true randomization algorithm and webapp for Spotify. 
+<div align = "center">
+  <h1 align="center">Better Shuffle</h1>
+  <p align="center">
+  Open-source algorithm for shuffling that is completely random, rather than the curated one that Spotify offers. I created this with the realization that most of the songs in any given playlist would never be played back to me through shuffle, but rather only a small handful would consistenly play. The application interacts with the Spotify API to retrieve all the necessary data to make sure you are able to experience a better way to shuffle music.
+  </p>
+</div>
 
 # How to Use
-1. Go to webpage: 
+1. Go to webpage: (App is currently waiting to be approved by Spotify, will create webpage after approval)
 2. Connect your Spotify when prompted
 3. Choose playlist and device
-4. Shuffled tracks will start playing on your device.
+4. Shuffled tracks will start playing on your device
 
-(Note: Currently the app is unusable for Spotify free users. Plan to add some sort of functionality in the future.)
+(If you are forking, make sure to enter the correct details as seen in the .env.example file)
 
-(Also if you are forking and want to use the app on your own, make sure to enter details as seen in the example env file.)
+# Demo
+![](https://github.com/preettank/spotify-better-shuffle/blob/develop/demo.gif)
+
+# License
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/preettank/spotify-better-shuffle/blob/develop/LICENSE) file for details

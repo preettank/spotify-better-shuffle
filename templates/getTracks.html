@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+    <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
     <title>Better Shuffle</title>
 </head>
 <body>
     <h1 style="text-align: center">Better Shuffle</h1>
     <div class = 'image'>
-    <img src="../static/Spotify Purple Neon Logo.png" style="width:120px; height:120px"; text-align: center>
+    <img src="../static/Spotify_Logo_RGB_White.png" style="width: 280px; height: auto; text-align: center;">
     </div>
     <h2 style="text-align: center">Choose Playlist and Device: </h2>
     <form action="/getPlaylist" method="POST">
@@ -27,17 +28,30 @@
         </div>
 
         <div class = 'clicker'>
-            <input type="submit" value="Shuffle Playlist">
+            <input type="submit" value="Shuffle Playlist" onclick="this.disabled=true;this.form.submit();this.value='Shuffling...';">
         </div>
     </form>
+    {% if track_data|length > 1 %}
+    <div class = 'create_playlist'>
+    <form hx-get="/createPlaylist" hx-trigger="click once">
+        <input type="submit" class="c_playlist" name="c_playlist" value="Create Into New Playlist" onclick="this.disabled=true;this.value='Playlist Saved';">
+        <!-- Stores uri data in input as a way to cache the currently shuffled tracks -->
+        <input type="hidden" id = "send_back" name="send_back" value="{{ uris }}">
+    </form>
+    </div>
+    {% endif %}
+
+    {% if user_premium_status != "premium" and track_data|length > 1 %}
+    <p style="text-align:center;">Spotify does not support playback for free users, however, you can save the shuffled songs to your own playlist and play in order.</p>
+    {% endif %}
 
     {% if track_data|length > 1 %}
     <div class = 'table'>
         <table>
             <tr>
                 <th>Number</th>
-                <th>Title</th>
-                <th>Artists</th>
+                <th style="width: 350px;">Title</th>
+                <th style="width: 350px">Artist(s)</th>
             </tr>
             {% for track in track_data %}
                 <tr>
