@@ -91,7 +91,12 @@ table {
   margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
+  border-collapse: collapse;
 }
 
-
+table tr:not(:first-child):hover {
+  background-color: #013896;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
   

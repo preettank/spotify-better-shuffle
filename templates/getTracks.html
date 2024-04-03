@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
     <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rows = document.querySelectorAll('.table tr');
+            const urisInput = document.getElementById('send_back');
+        
+            rows.forEach(row => {
+                row.addEventListener('click', function() {
+                    const rowIndex = this.getAttribute('hx-vals');
+                    const uris = urisInput.value;
+                    
+                    // send both rowIndex and uris to endpoint
+                    fetch('/rowClicked', {
+                        method: 'POST', 
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ rowIndex, uris }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
+            });
+        });
+    </script>        
     <title>Better Shuffle</title>
 </head>
 <body>
@@ -36,7 +65,7 @@
     <form hx-get="/createPlaylist" hx-trigger="click once">
         <input type="submit" class="c_playlist" name="c_playlist" value="Create Into New Playlist" onclick="this.disabled=true;this.value='Playlist Saved';">
         <!-- Stores uri data in input as a way to cache the currently shuffled tracks -->
-        <input type="hidden" id = "send_back" name="send_back" value="{{ uris }}">
+        <input type="hidden" id = "send_back" name="send_back" value="{{ uris }}" readonly>
     </form>
     </div>
     {% endif %}
@@ -49,7 +78,7 @@
     <div class = 'create_playlist'>
     <form hx-post="/skipTrack" hx-trigger="click">
         <input type="submit" class="skipB" name="skipB" value="<- Previous Track">
-        <input type="submit" class="skip" name="skip" value="Next Track ->">
+        <input type="submit" class="skip" name="skip" value="  Next Track ->  ">
     </form>
     </div>
 
@@ -61,7 +90,7 @@
                 <th style="width: 350px">Artist(s)</th>
             </tr>
             {% for track in track_data %}
-                <tr>
+                <tr hx-vals='{"rowIndex": "{{ loop.index0 }}"}'>
                     <td>#{{ track[1] }}</td>
                     <td>{{ track[0] }}</td>
                     <td>By: {{ track[2] }} </td>

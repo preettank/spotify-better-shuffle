@@ -5,6 +5,7 @@ from spotipy.oauth2 import SpotifyOAuth
 import time
 import spotipy
 import random
+import json
 
 load_dotenv()
 # App config
@@ -140,6 +141,8 @@ def createPlaylist():
     response = make_response('', 204)
     return response
 
+# skips to the next track or goes back to the previous track
+# checks dynamically with htmx if either skip button was clicked
 @app.route('/skipTrack', methods=['POST'])
 def skipTrack():
     try:
@@ -151,8 +154,30 @@ def skipTrack():
 
     if 'skip' in request.form:
         sp.next_track()
-    else:
+    elif 'skipB' in request.form:
         sp.previous_track()
+
+    response = make_response('', 204)
+    return response
+
+# plays the track that was clicked on the table
+# checks dynamically with javascript if a row was clicked
+@app.route('/rowClicked', methods=['POST'])
+def rowClicked():
+    try:
+        token_info = get_token()
+    except:
+        print("user not logged in")
+        return redirect(url_for("login", _external=False)
+    )
+    sp = spotipy.Spotify(auth=token_info['access_token'])
+
+    data = request.get_json()
+    row_index_json = data.get('rowIndex')
+    row_index = json.loads(row_index_json)['rowIndex']
+    uris = data.get('uris')
+
+    sp.start_playback(uris=eval(uris), offset = {"position": row_index})
 
     response = make_response('', 204)
     return response
