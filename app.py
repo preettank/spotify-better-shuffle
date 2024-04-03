@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 import os
-from flask import Flask, request, url_for, session, redirect, render_template
+from flask import Flask, request, url_for, session, redirect, render_template, make_response
 from spotipy.oauth2 import SpotifyOAuth
 import time
 import spotipy
@@ -137,7 +137,25 @@ def createPlaylist():
     # can only add a maxium of 100 so if total shuffled tracks is ever changed make sure to for loop below statment
     sp.user_playlist_add_tracks(user=user_id, playlist_id=created_playlistID, tracks = eval(uris))
 
-    return 
+    response = make_response('', 204)
+    return response
+
+@app.route('/skipTrack', methods=['POST'])
+def skipTrack():
+    try:
+        token_info = get_token()
+    except: 
+        print("user not logged in")
+        return redirect(url_for("login", _external=False))
+    sp = spotipy.Spotify(auth=token_info['access_token'])
+
+    if 'skip' in request.form:
+        sp.next_track()
+    else:
+        sp.previous_track()
+
+    response = make_response('', 204)
+    return response
 
 # Checks to see if token is valid and gets a new token if not
 def get_token():

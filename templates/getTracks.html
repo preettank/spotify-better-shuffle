@@ -46,6 +46,13 @@
     {% endif %}
 
     {% if track_data|length > 1 %}
+    <div class = 'create_playlist'>
+    <form hx-post="/skipTrack" hx-trigger="click">
+        <input type="submit" class="skipB" name="skipB" value="<- Previous Track">
+        <input type="submit" class="skip" name="skip" value="Next Track ->">
+    </form>
+    </div>
+
     <div class = 'table'>
         <table>
             <tr>
