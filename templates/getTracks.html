@@ -9,6 +9,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const rows = document.querySelectorAll('.table tr');
             const urisInput = document.getElementById('send_back');
+            const createPlaylistButton = document.getElementById('c_playlist');
         
             rows.forEach(row => {
                 row.addEventListener('click', function() {
@@ -23,15 +24,42 @@
                         },
                         body: JSON.stringify({ rowIndex, uris }),
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
+                    .then(response =>  {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
                     })
                     .catch(error => {
                         console.error('Error:', error);
                     });
                 });
             });
+            createPlaylistButton.addEventListener('click', function() {
+                const uris = urisInput.value; // Retrieve URIs from the hidden input
+                createPlaylistButton.disabled = true; // Disable button after use
+                createPlaylistButton.style.cursor = 'wait';
+
+                fetch('/createPlaylist', {
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ uris }), // Send URIs to endpoint
+                })
+                .then(response =>  {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    createPlaylistButton.value = 'Playlist Saved'; // Change button text
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                })
+                .finally(() => {
+                    createPlaylistButton.style.cursor = 'pointer';
+                });
+            });
+
         });
     </script>        
     <title>Better Shuffle</title>
@@ -62,11 +90,9 @@
     </form>
     {% if track_data|length > 1 %}
     <div class = 'create_playlist'>
-    <form hx-get="/createPlaylist" hx-trigger="click once">
-        <input type="submit" class="c_playlist" name="c_playlist" value="Create Into New Playlist" onclick="this.disabled=true;this.value='Playlist Saved';">
+        <input type="button" class="c_playlist" name="c_playlist" id = "c_playlist" value="Create Into New Playlist">
         <!-- Stores uri data in input as a way to cache the currently shuffled tracks -->
         <input type="hidden" id = "send_back" name="send_back" value="{{ uris }}" readonly>
-    </form>
     </div>
     {% endif %}
 
