@@ -94,6 +94,11 @@ table {
   border-collapse: collapse;
 }
 
+table td {
+  text-align: center;
+  padding: .5em;
+}
+
 table tr:not(:first-child):hover {
   background-color: #013896;
   color: rgb(255, 255, 255);

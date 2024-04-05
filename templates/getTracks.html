@@ -111,15 +111,17 @@
     <div class = 'table'>
         <table>
             <tr>
-                <th>Number</th>
+                <th></th>
+                <th style="width: 50px; text-align: center;">Number</th>
                 <th style="width: 350px;">Title</th>
                 <th style="width: 350px">Artist(s)</th>
             </tr>
             {% for track in track_data %}
                 <tr hx-vals='{"rowIndex": "{{ loop.index0 }}"}'>
-                    <td>#{{ track[1] }}</td>
+                    <td> <img src = {{ track[2] }} alt="Album image"> </td>
+                    <td>  #{{ track[1] }}</td>
                     <td>{{ track[0] }}</td>
-                    <td>By: {{ track[2] }} </td>
+                    <td>By: {{ track[3] }} </td>
                 </tr>
             {% endfor %}
         </table>

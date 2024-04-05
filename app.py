@@ -66,7 +66,13 @@ def getPlaylist():
         indexes = {}
         available_tracks = []
         for i, track in enumerate(all_songs):
-            indexes[i+1] = [track['track']['uri'], track['track']['name']]
+            # skip local files and unplayable songs in the user's market from available tracks
+            if track['track']['is_local']:
+                continue
+            elif track['track']['is_playable'] == False:
+                continue
+
+            indexes[i+1] = [track['track']['uri'], track['track']['name'], track['track']['album']['images'][2]['url']]
             if len(track['track']['artists']) > 1:
                 artists = ""
                 counter = 1
@@ -78,13 +84,8 @@ def getPlaylist():
                 indexes[i+1].append(artists)
             else:
                 indexes[i+1].append(track['track']['artists'][0]['name'])
-            # removes local files and unplayable songs in the user's market from available tracks
-            if track['track']['is_local']:
-                del indexes[i+1]
-            elif track['track']['is_playable'] == False:
-                del indexes[i+1]
-            else:
-                available_tracks.append(i+1)
+                
+            available_tracks.append(i+1)
         
         # generates 75 random numbers from the available track indexes
         if len(available_tracks) > 75:
@@ -97,7 +98,7 @@ def getPlaylist():
         track_data = []
         for num in numbers:
             uris.append(indexes[num][0])
-            track_data.append([indexes[num][1], num, indexes[num][2]])
+            track_data.append([indexes[num][1], num, indexes[num][2], indexes[num][3]])
 
         playlist_data, devices = playlists_devices(sp)
 
