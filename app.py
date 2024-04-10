@@ -67,9 +67,12 @@ def getPlaylist():
         available_tracks = []
         for i, track in enumerate(all_songs):
             # skip local files and unplayable songs in the user's market from available tracks
-            if track['track']['is_local']:
-                continue
-            elif track['track']['is_playable'] == False:
+            try:
+                if track['track']['is_local']:
+                    continue
+                elif track['track']['is_playable'] == False:
+                    continue
+            except:
                 continue
 
             indexes[i+1] = [track['track']['uri'], track['track']['name'], track['track']['album']['images'][2]['url']]
@@ -84,7 +87,7 @@ def getPlaylist():
                 indexes[i+1].append(artists)
             else:
                 indexes[i+1].append(track['track']['artists'][0]['name'])
-                
+
             available_tracks.append(i+1)
         
         # generates 75 random numbers from the available track indexes
