@@ -15,8 +15,13 @@ app.secret_key = os.getenv("APP_KEY")
 app.config['SESSION_COOKIE_NAME'] = "COOKIES"
 TOKEN_INFO = "token_info"
 
-
 @app.route('/')
+def home():
+    # landing page
+    return render_template('home.html')
+
+
+@app.route('/login')
 def login():
     sp_ouath = create_spotify_oauth()
     auth_url = sp_ouath.get_authorize_url()
