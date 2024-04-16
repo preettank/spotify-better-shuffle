@@ -3,6 +3,12 @@
 <head>
     <title>Better Shuffle</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" />
+    <link rel="icon" type="image/x-icon" href="/static/frog2.png">
+<script>
+    window.addEventListener('pageshow', function() {
+        document.body.style.cursor = 'default'; 
+    });
+</script>
 </head>
 <body>
     <div class="header">
@@ -11,7 +17,7 @@
             <p class="title"><b>Better Shuffle</b></p>
             <p class="subheading">Experience true randomness</p>
         </div>
-        <img src="../static/Frog.webp" alt="Frog" class="frog">
+        <img src="../static/frog2.png" alt="Frog" class="frog">
         <div class="made-for-container">
             <p class="made-for-text">Made for &#160</p>
             <img src="../static/Spotify_Icon_RGB_White.png" alt="Spotify Logo" class="image">
@@ -38,7 +44,7 @@
     </div>
 
     <div class="login">
-        <a href="/login">Login with Spotify</a>
+        <a id = "loginButton" href="/login" onclick="document.body.style.cursor='wait'">Login with Spotify</a>
     </div>
 </body>
 </html>

@@ -6,7 +6,7 @@
 </div>
 
 # How to Use
-1. Go to webpage: (App is currently waiting to be approved by Spotify, will create webpage after approval)
+1. Go to <a target="_blank" rel="noopener noreferrer" href="https://bettershuffle.com/"> bettershuffle.com</a>
 2. Connect your Spotify when prompted
 3. Choose playlist and device
 4. Shuffled tracks will start playing on your device
