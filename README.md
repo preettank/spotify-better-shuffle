@@ -14,7 +14,7 @@
 (If you are forking, make sure to enter the correct details as seen in the .env.example file)
 
 # Demo
-![](https://github.com/preettank/spotify-better-shuffle/blob/develop/static/better_shuffle_demo.gif)
+![](https://github.com/preettank/spotify-better-shuffle/blob/main/static/better_shuffle_demo.gif)
 
 # License
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/preettank/spotify-better-shuffle/blob/develop/LICENSE) file for details
