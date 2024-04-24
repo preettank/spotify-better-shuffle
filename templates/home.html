@@ -3,10 +3,11 @@
 <head>
     <title>Better Shuffle</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" />
-    <link rel="icon" type="image/x-icon" href="/static/frog2.png">
+    <link rel="shortcut icon" href="../static/favicon.ico"/>
+    <link rel="icon" type="image/png" href="../static/frog-head.png" sizes="192x192">
 <script>
     window.addEventListener('pageshow', function() {
-        document.body.style.cursor = 'default'; 
+        loginButton.style.cursor = 'pointer'; 
     });
 </script>
 </head>
@@ -44,7 +45,31 @@
     </div>
 
     <div class="login">
-        <a id = "loginButton" href="/login" onclick="document.body.style.cursor='wait'">Login with Spotify</a>
+        <a id = "loginButton" class = "loginButton" href="/login" onclick="this.style.cursor='wait'">Login with Spotify</a>
     </div>
+
+    <div class="gif">
+        <img src="../static/better_shuffle_demo.gif" alt="Demo Gif" class="demo">
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="about-section">
+                <h3>About Us</h3>
+                <p>Discover a new way to enjoy your playlists with our enhanced shuffle feature. Unlike the standard shuffle you might be used to,
+                     our app ensures every song gets its turn in the spotlight, giving you a truly random and fair playback experience. Connect seamlessly 
+                     with Spotify and rediscover your music collection without repetitions or omissions.</p>
+            </div>
+            <div class="privacy-policy">
+                <h3> <a href="/privacy-policy">Privacy Policy</a></h3>
+                <h3><a href="mailto:contact@bettershuffle.com">Contact</a></h3>
+                <h3>YEA YEA</h3>
+                <h3>FROG FROG</h3>
+            </div>
+        </div>
+        <img src="../static/frog-head.png" alt="frog head" class="footer-logo">
+        <p class="footer-text">© 2024 bettershuffle.com - All rights reserved.</p>
+    </footer>
+    
 </body>
 </html>

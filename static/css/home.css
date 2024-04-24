@@ -8,7 +8,7 @@ body {
     font-weight: 300;
     margin: 0;
     padding: 0;
-    height: 100vh;
+    height: 100%;
     overflow: auto;
 }
 .header {
@@ -78,7 +78,7 @@ body {
     justify-content: center;
     margin-top: 20px;
 }
-a {
+.loginButton {
     padding: 10px 30px;
     background-color: white;
     border-radius: 20px;
@@ -86,18 +86,101 @@ a {
     font-weight: bold;
     color: black;
     margin: 20px;
+    margin-bottom: 60px;
 }
-a:hover {
+.loginButton:hover {
     background-color: #1ed760;
 }
-@media (max-width: 768px) {
+/* Keyframes for glowing animation */
+@keyframes neonGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 5px #39ff14,   /* Inner glow */
+            0 0 10px #39ff14,  /* Middle glow */
+            0 0 20px #39ff14,  /* Outer glow */
+            0 0 40px #39ff14;  /* Even larger glow */
+    }
+    50% {
+        box-shadow:
+            0 0 10px #39ff14,  /* Inner glow */
+            0 0 20px #39ff14,  /* Middle glow */
+            0 0 30px #39ff14,  /* Outer glow */
+            0 0 50px #39ff14;  /* Even larger glow */
+    }
+}
+.gif {
+    width: 90%;
+    max-width: 1250px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    border: 3px solid #39ff14; /* Neon green border */
+    position: relative;
+    padding: 25px;
+    animation: neonGlow 2s ease-in-out infinite;
+}
+.demo {
+    width: 100%;  
+    height: auto;
+    display: block;  
+}
+footer {
+    background-color: #151e3f;
+    padding: 20px 0;
+    text-align: center;
+    clear: both; 
+    width: 100%;
+}
+.footer-logo {
+    height: 125px; 
+    flex: 0 0 auto; 
+}
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-section,
+.privacy-policy {
+    flex: 1 1 300px; 
+    margin: 0 20px;
+}
+
+.privacy-policy a {
+    margin-top: 50px;
+    color: #007bff;
+}
+.footer-text {
+    margin-top: 5px; 
+}
+@media (max-width: 1000px) {
+    .welcome {
+        font-size: 3.1em;
+        margin: auto;
+        text-align: center;
+    }
+    .title {
+        font-size: 5.4em;
+        margin: auto;
+        text-align: center;
+    }
+    .subheading {
+        font-size: 2.6em;
+        margin: auto;
+        text-align: center;
+    }
     .header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
     }
     .header-left {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
     }
     .frog {
         width: 100%; 
@@ -111,5 +194,31 @@ a:hover {
     }
     .steps-container {
         flex-direction: column;
+    }
+    .gif {
+        max-width: 1000px;
+        width: 90%;
+        padding: 10px;
+    }
+}
+@media (max-width: 1150px) {
+    .welcome {
+        font-size: 2.6em;
+    }
+    .title {
+        font-size: 4.4em;
+    }
+    .subheading {
+        font-size: 2.2em;
+    }
+    .frog {
+        max-width: 450px; 
+    }
+    .header-left{
+        padding: 10px;
+    }
+    .gif {
+        max-width: 1000px;
+        width: 90%;
     }
 }

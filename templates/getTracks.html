@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
-    <link rel="icon" type="image/x-icon" href="/static/frog2.png">
+    <link rel="shortcut icon" href="../static/favicon.ico"/>
+    <link rel="icon" type="image/png" href="../static/frog-head.png" sizes="192x192">
     <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -63,7 +64,7 @@
 
         });
     </script>        
-    <title>Better Shuffle</title>
+    <title>Better Shuffle - Randomly Yours</title>
 </head>
 <body>
     <h1 style="text-align: center"><b>Better Shuffle</b></h1>
@@ -71,7 +72,7 @@
     <img src="../static/Spotify_Logo_RGB_White.png" style="width: 280px; height: auto; text-align: center;">
     </div>
     <h2 style="text-align: center">Choose Playlist and Device: </h2>
-    <form action="/getPlaylist" method="POST">
+    <form id="shufflePlaylist" action="/getPlaylist" method="POST">
         <div class = 'selection'>
             <select name="playlists" class = "Input" id="playlists">
                 {% for playlist in playlist_data %}
