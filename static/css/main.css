@@ -3,8 +3,30 @@ body {
   color: hsl(230, 100%, 95%);
   background-color: hsl(230, 40%, 10%);
   font-weight: 300;
+  --sb-track-color: (230, 40%, 10%);
+  --sb-thumb-color: #1ed760;
+  --sb-size: 14px;
+}
+body::-webkit-scrollbar {
+  width: var(--sb-size);
 }
 
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 6px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+      scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
+  }
+}  
 .image {
   margin-top: -40px;
 }
